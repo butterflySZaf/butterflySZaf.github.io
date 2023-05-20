@@ -1,17 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Minha Página no GitHub</title>
+  <title>Anime Dungeons - Banner 24H</title>
   <style>
     body {
       background-color: black;
-      color: white; /* Define a cor do texto como branco para melhor legibilidade */
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Bem-vindo à Minha Página no GitHub!</h1>
-  <p>Esta é uma página simples em HTML hospedada no GitHub.</p>
-  <p>Você pode adicionar mais conteúdo aqui, como imagens, links e estilos.</p>
+  <h1>Anime Dungeons - Banner 24H</h1>
+
+  <ul id="character-list">
+    <!-- Personagens serão adicionados aqui via JavaScript -->
+  </ul>
+
+  <script>
+    // Tabela de personagens
+    var characterTable = [
+      "Personagem 1",
+      "Personagem 2",
+      "Personagem 3",
+      "Personagem 4",
+      "Personagem 5",
+      "Personagem 6"
+    ];
+
+    // Função para atualizar a lista de personagens
+    function updateCharacterList() {
+      var ul = document.getElementById("character-list");
+      ul.innerHTML = ""; // Limpa a lista antes de adicionar os novos personagens
+
+      // Adiciona os personagens à lista
+      for (var i = 0; i < characterTable.length; i++) {
+        var li = document.createElement("li");
+        li.innerText = characterTable[i];
+        ul.appendChild(li);
+      }
+    }
+
+    // Atualiza a lista de personagens inicialmente
+    updateCharacterList();
+
+    // Atualiza a lista de personagens a cada 1 minuto (horário GMT)
+    setInterval(function() {
+      // Gere uma lista de 6 personagens aleatórios
+      var randomCharacters = [];
+      while (randomCharacters.length < 6) {
+        var randomIndex = Math.floor(Math.random() * characterTable.length);
+        var randomCharacter = characterTable[randomIndex];
+        if (!randomCharacters.includes(randomCharacter)) {
+          randomCharacters.push(randomCharacter);
+        }
+      }
+
+      // Atualize a lista de personagens com os personagens aleatórios
+      characterTable = randomCharacters;
+      updateCharacterList();
+    }, 60000); // 1 minuto = 60.000 milissegundos
+  </script>
 </body>
 </html>
