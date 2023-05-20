@@ -5,23 +5,21 @@
   <style>
     body {
       background-color: #EAEAEA;
-      color: white;
-      font-family: Arial, sans-serif;
+      font-family: "Arial Rounded MT Bold", sans-serif;
       padding: 20px;
       text-align: center;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 48px;
       margin-bottom: 30px;
-      text-shadow: 2px 2px #000000;
+      text-shadow: 2px 2px 4px #000000;
     }
 
     p {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.5;
       margin-bottom: 20px;
-      text-shadow: 1px 1px #000000;
     }
 
     ul {
@@ -32,25 +30,27 @@
 
     li {
       margin-bottom: 10px;
-      text-shadow: 1px 1px #000000;
+      text-shadow: 1px 1px 2px #000000;
+      font-size: 24px;
     }
 
-    img {
-      width: 200px;
-      height: 200px;
-      margin-bottom: 20px;
-      box-shadow: 3px 3px 5px #888888;
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.5;
     }
   </style>
 </head>
 <body>
+  <img src="background.jpg" alt="Background Image" class="background-image">
+
   <h1>Anime Dungeons - Banner 24H</h1>
 
   <p>Bem-vindo ao Anime Dungeons! Aqui você encontrará uma lista de personagens aleatórios do nosso jogo.</p>
-
-  <img src="personagem1.jpg" alt="Personagem 1">
-  <img src="personagem2.jpg" alt="Personagem 2">
-  <img src="personagem3.jpg" alt="Personagem 3">
 
   <ul id="character-list">
     <!-- Personagens serão adicionados aqui via JavaScript -->
