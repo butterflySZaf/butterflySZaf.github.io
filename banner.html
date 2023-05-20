@@ -189,19 +189,23 @@
       // Atualiza as listas de personagens imediatamente
       updateCharacterLists();
 
-      // Aguarda até a próxima hora para verificar novamente
+      // Calcula o tempo até a próxima atualização
       var currentTime = new Date();
       var minutesUntilNextHour = 60 - currentTime.getMinutes();
-      var secondsUntilNextHour = minutesUntilNextHour * 60;
+
       var countdownElement = document.getElementById("countdown");
+      countdownElement.textContent = minutesUntilNextHour + " Minutes";
 
-      countdownElement.textContent = formatTime(minutesUntilNextHour) + ":" + formatTime(secondsUntilNextHour);
-
-      setTimeout(checkAndUpdateBanner, secondsUntilNextHour * 1000); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
+      // Aguarda até a próxima hora para verificar novamente
+      var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
+      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Próxima hora = minutos restantes até a próxima hora * 60 segundos * 1000 milissegundos
     }
 
     // Inicia o processo de verificação e atualização do banner
-    checkAndUpdateBanner();
+    var currentTime = new Date();
+    var minutesUntilNextHour = 60 - currentTime.getMinutes();
+    var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
+    setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Inicia após o tempo restante até a próxima hora
 
     // Formata o tempo como "00" para exibição
     function formatTime(time) {
