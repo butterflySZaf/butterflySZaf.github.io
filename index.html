@@ -4,16 +4,16 @@
   <title>Anime Dungeons - Banner 24H</title>
   <style>
     body {
-      background-color: #292929;
-      color: white;
-      font-family: Arial, sans-serif;
+      background-color: #F3E5F5;
+      color: #311B92;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       padding: 20px;
       text-align: center;
     }
 
     h1 {
-      font-size: 30px;
-      margin-bottom: 20px;
+      font-size: 40px;
+      margin-bottom: 30px;
     }
 
     ul {
@@ -46,7 +46,12 @@
       "Personagem 7",
       "Personagem 8",
       "Personagem 9",
-      "Personagem 10"
+      "Personagem 10",
+      "Personagem 11",
+      "Personagem 12",
+      "Personagem 13",
+      "Personagem 14",
+      "Personagem 15"
     ];
 
     // Função para atualizar a lista de personagens
@@ -54,12 +59,29 @@
       var ul = document.getElementById("character-list");
       ul.innerHTML = ""; // Limpa a lista antes de adicionar os novos personagens
 
+      // Seleciona aleatoriamente 6 personagens da tabela
+      var randomCharacters = getRandomCharacters(characterTable, 6);
+
       // Adiciona os personagens à lista
-      for (var i = 0; i < characterTable.length; i++) {
+      for (var i = 0; i < randomCharacters.length; i++) {
         var li = document.createElement("li");
-        li.innerText = characterTable[i];
+        li.innerText = randomCharacters[i];
         ul.appendChild(li);
       }
+    }
+
+    // Função para selecionar aleatoriamente 'count' elementos de um array
+    function getRandomCharacters(array, count) {
+      var shuffledArray = array.slice(); // Copia o array original
+      var randomCharacters = [];
+
+      while (randomCharacters.length < count && shuffledArray.length > 0) {
+        var randomIndex = Math.floor(Math.random() * shuffledArray.length);
+        var randomCharacter = shuffledArray.splice(randomIndex, 1)[0];
+        randomCharacters.push(randomCharacter);
+      }
+
+      return randomCharacters;
     }
 
     // Atualiza a lista de personagens inicialmente
@@ -67,29 +89,7 @@
 
     // Função para verificar e atualizar o banner (lista de personagens)
     function checkAndUpdateBanner() {
-      var currentDate = new Date();
-      var currentMinute = currentDate.getUTCMinutes();
-      var currentSecond = currentDate.getUTCSeconds();
-
-      if (currentMinute !== 0 || currentSecond !== 0) {
-        // Se não for um minuto exato, aguarda até o próximo minuto
-        var remainingSeconds = 60 - currentSecond;
-        setTimeout(checkAndUpdateBanner, remainingSeconds * 1000); // Aguarda o restante dos segundos
-        return;
-      }
-
-      // Gera uma lista de 6 personagens aleatórios
-      var randomCharacters = [];
-      while (randomCharacters.length < 6) {
-        var randomIndex = Math.floor(Math.random() * characterTable.length);
-        var randomCharacter = characterTable[randomIndex];
-        if (!randomCharacters.includes(randomCharacter)) {
-          randomCharacters.push(randomCharacter);
-        }
-      }
-
-      // Atualiza a lista de personagens com os personagens aleatórios
-      characterTable = randomCharacters;
+      // Atualiza o banner imediatamente
       updateCharacterList();
 
       // Aguarda até o próximo minuto para verificar novamente
