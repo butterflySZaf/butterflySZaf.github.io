@@ -4,18 +4,22 @@
   <title>Anime Dungeons - Banner 24H</title>
   <style>
     body {
-      background-color: black;
+      background-color: #292929;
       color: white;
       font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
+      font-size: 30px;
+      margin-bottom: 20px;
     }
 
     ul {
       list-style-type: none;
       padding-left: 0;
+      margin-top: 30px;
     }
 
     li {
@@ -38,7 +42,11 @@
       "Personagem 3",
       "Personagem 4",
       "Personagem 5",
-      "Personagem 6"
+      "Personagem 6",
+      "Personagem 7",
+      "Personagem 8",
+      "Personagem 9",
+      "Personagem 10"
     ];
 
     // Função para atualizar a lista de personagens
@@ -57,9 +65,20 @@
     // Atualiza a lista de personagens inicialmente
     updateCharacterList();
 
-    // Atualiza a lista de personagens a cada 1 minuto (horário GMT)
-    setInterval(function() {
-      // Gere uma lista de 6 personagens aleatórios
+    // Função para verificar e atualizar o banner (lista de personagens)
+    function checkAndUpdateBanner() {
+      var currentDate = new Date();
+      var currentMinute = currentDate.getUTCMinutes();
+      var currentSecond = currentDate.getUTCSeconds();
+
+      if (currentMinute !== 0 || currentSecond !== 0) {
+        // Se não for um minuto exato, aguarda até o próximo minuto
+        var remainingSeconds = 60 - currentSecond;
+        setTimeout(checkAndUpdateBanner, remainingSeconds * 1000); // Aguarda o restante dos segundos
+        return;
+      }
+
+      // Gera uma lista de 6 personagens aleatórios
       var randomCharacters = [];
       while (randomCharacters.length < 6) {
         var randomIndex = Math.floor(Math.random() * characterTable.length);
@@ -69,10 +88,16 @@
         }
       }
 
-      // Atualize a lista de personagens com os personagens aleatórios
+      // Atualiza a lista de personagens com os personagens aleatórios
       characterTable = randomCharacters;
       updateCharacterList();
-    }, 60000); // 1 minuto = 60.000 milissegundos
+
+      // Aguarda até o próximo minuto para verificar novamente
+      setTimeout(checkAndUpdateBanner, 60000); // 1 minuto = 60.000 milissegundos
+    }
+
+    // Inicia o processo de verificação e atualização do banner
+    checkAndUpdateBanner();
   </script>
 </body>
 </html>
