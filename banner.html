@@ -112,89 +112,81 @@
       </tr>
     </table>
 
-    <a href="https://web.roblox.com/games/9105171936/Anime-Dungeons" class="corner-text">Check Roblox Game</a>
+    <a href="https://web.roblox.com/games/9105171936/Anime-Dungeons" class="corner-text">Check out Anime Dungeons on Roblox!</a>
   </div>
 
   <script>
-    // Character tables
-    var legendaryCharacterTable = [
-      "Ace",
-      "Goku",
-      "Luffy"
-    ];
+    // Verificar se o valor do último horário de atualização está armazenado no localStorage
+    if (localStorage.getItem('lastUpdate')) {
+      // Obter o valor do último horário de atualização do localStorage
+      const lastUpdate = parseInt(localStorage.getItem('lastUpdate'), 10);
 
-    var rareCharacterTable = [
-      "Gohan",
-      "Deku",
-      "Nami"
-    ];
+      // Obter o horário atual em milissegundos desde o Unix Epoch
+      const currentTime = Date.now();
 
-    var uncommonCharacterTable = [
-      "Vegeta",
-      "Kuririn",
-      "Majin Boo"
-    ];
+      // Calcular a diferença de tempo em minutos
+      const minutesPassed = Math.floor((currentTime - lastUpdate) / 60000);
 
-    var commonCharacterTable = [
-      "Asta",
-      "Light Yagami",
-      "Nezuko",
-      "Tanjiro"
-    ];
+      // Se ainda não tiver passado uma hora desde a última atualização, exibir os dados armazenados
+      if (minutesPassed < 60) {
+        const legendaryList = localStorage.getItem('legendary');
+        const rareList = localStorage.getItem('rare');
+        const uncommonList = localStorage.getItem('uncommon');
+        const commonList = localStorage.getItem('common');
 
-    // Function to update the character lists
-    function updateCharacterLists() {
-      updateCharacterList(legendaryCharacterTable, "legendary-character-list", 1, "legendary");
-      updateCharacterList(rareCharacterTable, "rare-character-list", 1, "rare");
-      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", 1, "uncommon");
-      updateCharacterList(commonCharacterTable, "common-character-list", 3, "common");
-    }
-
-    // Function to update a character list
-    function updateCharacterList(characterTable, listId, count, rarityClass) {
-      var ul = document.getElementById(listId);
-      ul.innerHTML = ""; // Clear the list before adding new characters
-
-      // Randomly select characters from the table
-      var randomCharacters = getRandomCharacters(characterTable, count);
-
-      // Add the characters to the list
-      for (var i = 0; i < randomCharacters.length; i++) {
-        var li = document.createElement("li");
-        li.innerText = randomCharacters[i];
-        li.classList.add(rarityClass);
-        ul.appendChild(li);
+        if (legendaryList && rareList && uncommonList && commonList) {
+          document.getElementById('legendary-character-list').innerHTML = legendaryList;
+          document.getElementById('rare-character-list').innerHTML = rareList;
+          document.getElementById('uncommon-character-list').innerHTML = uncommonList;
+          document.getElementById('common-character-list').innerHTML = commonList;
+        }
       }
     }
 
-    // Function to randomly select 'count' elements from an array
-    function getRandomCharacters(array, count) {
-      var shuffledArray = array.slice(); // Copy the original array
-      var randomCharacters = [];
-
-      while (randomCharacters.length < count && shuffledArray.length > 0) {
-        var randomIndex = Math.floor(Math.random() * shuffledArray.length);
-        var randomCharacter = shuffledArray.splice(randomIndex, 1)[0];
-        randomCharacters.push(randomCharacter);
-      }
-
-      return randomCharacters;
-    }
-
-    // Update the character lists initially
-    updateCharacterLists();
-
-    // Function to update the banner (character lists)
+    // Atualizar o banner e armazenar os dados no localStorage
     function updateBanner() {
-      // Update the character lists immediately
-      updateCharacterLists();
+      // Simulando a obtenção dos dados do banner
+      const legendaryCharacters = ['Character 1', 'Character 2', 'Character 3'];
+      const rareCharacters = ['Character 4', 'Character 5', 'Character 6'];
+      const uncommonCharacters = ['Character 7', 'Character 8', 'Character 9'];
+      const commonCharacters = ['Character 10', 'Character 11', 'Character 12'];
 
-      // Wait for 1 hour to update again
-      setTimeout(updateBanner, 60 * 60 * 1000); // 1 hour = 60 minutes * 60 seconds * 1000 milliseconds
+      // Construir a lista de personagens lendários
+      const legendaryList = legendaryCharacters.map(character => `<li class="legendary">${character}</li>`).join('');
+
+      // Construir a lista de personagens raros
+      const rareList = rareCharacters.map(character => `<li class="rare">${character}</li>`).join('');
+
+      // Construir a lista de personagens incomuns
+      const uncommonList = uncommonCharacters.map(character => `<li class="uncommon">${character}</li>`).join('');
+
+      // Construir a lista de personagens comuns
+      const commonList = commonCharacters.map(character => `<li class="common">${character}</li>`).join('');
+
+      // Atualizar o conteúdo das listas
+      document.getElementById('legendary-character-list').innerHTML = legendaryList;
+      document.getElementById('rare-character-list').innerHTML = rareList;
+      document.getElementById('uncommon-character-list').innerHTML = uncommonList;
+      document.getElementById('common-character-list').innerHTML = commonList;
+
+      // Armazenar o horário da última atualização no localStorage
+      localStorage.setItem('lastUpdate', Date.now().toString());
+
+      // Armazenar as listas de personagens no localStorage
+      localStorage.setItem('legendary', legendaryList);
+      localStorage.setItem('rare', rareList);
+      localStorage.setItem('uncommon', uncommonList);
+      localStorage.setItem('common', commonList);
     }
 
-    // Start the banner update process
+    // Chamar a função de atualização do banner
     updateBanner();
+
+    // Definir o intervalo de atualização do banner para 1 hora (em milissegundos)
+    const updateInterval = 60 * 60 * 1000; // 1 hora
+
+    // Executar a função de atualização do banner a cada intervalo definido
+    setInterval(updateBanner, updateInterval);
   </script>
 </body>
 </html>
