@@ -25,16 +25,25 @@
       margin-bottom: 20px;
     }
 
+    table {
+      margin: 0 auto;
+    }
+
+    th {
+      font-size: 24px;
+      text-shadow: 1px 1px 2px #000000;
+    }
+
     ul {
       list-style-type: none;
       padding-left: 0;
-      margin-top: 30px;
+      margin-top: 10px;
     }
 
     li {
       margin-bottom: 10px;
       text-shadow: 1px 1px 2px #000000;
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .corner-text {
@@ -62,19 +71,19 @@
         <td>
           <h2>Legendary</h2>
           <ul id="legendary-character-list">
-            <!-- Personagens lendários serão adicionados aqui via JavaScript -->
+            <!-- Personagem lendário será adicionado aqui via JavaScript -->
           </ul>
         </td>
         <td>
           <h2>Rare</h2>
           <ul id="rare-character-list">
-            <!-- Personagens raros serão adicionados aqui via JavaScript -->
+            <!-- Personagem raro será adicionado aqui via JavaScript -->
           </ul>
         </td>
         <td>
           <h2>Uncommon</h2>
           <ul id="uncommon-character-list">
-            <!-- Personagens incomuns serão adicionados aqui via JavaScript -->
+            <!-- Personagem incomum será adicionado aqui via JavaScript -->
           </ul>
         </td>
         <td>
@@ -118,24 +127,24 @@
 
     // Função para atualizar as listas de personagens
     function updateCharacterLists() {
-      updateCharacterList(legendaryCharacterTable, "legendary-character-list", "Legendary");
-      updateCharacterList(rareCharacterTable, "rare-character-list", "Rare");
-      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", "Uncommon");
-      updateCharacterList(commonCharacterTable, "common-character-list", "Common");
+      updateCharacterList(legendaryCharacterTable, "legendary-character-list", "Legendary", 1);
+      updateCharacterList(rareCharacterTable, "rare-character-list", "Rare", 1);
+      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", "Uncommon", 1);
+      updateCharacterList(commonCharacterTable, "common-character-list", "Common", 3);
     }
 
     // Função para atualizar uma lista de personagens
-    function updateCharacterList(characterTable, listId, rarity) {
+    function updateCharacterList(characterTable, listId, rarity, count) {
       var ul = document.getElementById(listId);
       ul.innerHTML = ""; // Limpa a lista antes de adicionar os novos personagens
 
       // Seleciona aleatoriamente os personagens da tabela
-      var randomCharacters = getRandomCharacters(characterTable, rarity === "Legendary" ? 1 : 3);
+      var randomCharacters = getRandomCharacters(characterTable, count);
 
       // Adiciona os personagens à lista
       for (var i = 0; i < randomCharacters.length; i++) {
         var li = document.createElement("li");
-        li.innerText = rarity + ": " + randomCharacters[i];
+        li.innerText = randomCharacters[i];
         ul.appendChild(li);
       }
     }
