@@ -3,13 +3,17 @@
 <head>
     <title>Flappy Bird</title>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
         #game {
             position: relative;
-            width: 400px;
-            height: 500px;
-            border: 1px solid black;
-            margin: 0 auto;
-            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+            background-color: skyblue;
         }
 
         #bird {
@@ -25,16 +29,22 @@
         .pipe {
             position: absolute;
             width: 80px;
-            height: 300px;
+            bottom: 0;
             background-color: green;
+            animation: pipeMove linear infinite;
         }
 
         #pipe_upper {
             top: 0;
         }
 
-        #pipe_lower {
-            bottom: 0;
+        @keyframes pipeMove {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
     </style>
 </head>
@@ -48,14 +58,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var bird = document.getElementById("bird");
-            var pipeUpper = document.getElementById("pipe_upper");
-            var pipeLower = document.getElementById("pipe_lower");
             var game = document.getElementById("game");
             var score = 0;
             var gameSpeed = 2;
             var gravity = 1;
             var birdPosition = 50;
-            var pipePosition = 400;
 
             function updateScore() {
                 document.getElementById("score").innerHTML = "Score: " + score;
@@ -65,45 +72,31 @@
                 birdPosition += gravity;
                 bird.style.top = birdPosition + "px";
 
-                pipePosition -= gameSpeed;
-                pipeUpper.style.left = pipePosition + "px";
-                pipeLower.style.left = pipePosition + "px";
+                var pipes = document.getElementsByClassName("pipe");
+                for (var i = 0; i < pipes.length; i++) {
+                    var pipe = pipes[i];
+                    var pipeRect = pipe.getBoundingClientRect();
+                    var birdRect = bird.getBoundingClientRect();
 
-                if (pipePosition <= -80) {
-                    pipePosition = 400;
-                    score++;
-                    updateScore();
-                }
+                    if (pipeRect.right < birdRect.left && !pipe.passed) {
+                        pipe.passed = true;
+                        score++;
+                        updateScore();
+                    }
 
-                if (birdPosition > 450) {
-                    gameOver();
-                }
-
-                if (collisionDetection()) {
-                    gameOver();
+                    if (pipeRect.left < birdRect.right && pipeRect.right > birdRect.left &&
+                        (birdRect.top < pipeRect.top || birdRect.bottom > pipeRect.bottom)) {
+                        gameOver();
+                    }
                 }
 
                 requestAnimationFrame(gameLoop);
-            }
-
-            function collisionDetection() {
-                var birdRect = bird.getBoundingClientRect();
-                var pipeUpperRect = pipeUpper.getBoundingClientRect();
-                var pipeLowerRect = pipeLower.getBoundingClientRect();
-
-                return (
-                    birdRect.left < pipeUpperRect.right &&
-                    birdRect.right > pipeUpperRect.left &&
-                    birdRect.top < pipeUpperRect.bottom &&
-                    birdRect.bottom > pipeLowerRect.top
-                );
             }
 
             function gameOver() {
                 alert("Game Over! Your score is: " + score);
                 score = 0;
                 birdPosition = 50;
-                pipePosition = 400;
                 updateScore();
             }
 
