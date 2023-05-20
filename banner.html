@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Anime Dungeons | Banner</title>
+  <title>Anime Dungeons - Banner 24H</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
@@ -79,9 +79,9 @@
 </head>
 <body>
   <div style="background-color: #222222;">
-    <h1>Anime Dungeons</h1>
+    <h1>Anime Dungeons - Banner 24H</h1>
 
-    <p>Updated web-banner from Roblox game "Anime Dungeons"! Updates in: <span id="countdown"></span></p>
+    <p>Official game banner with 100% of precision. Updates every 1 hour.</p>
 
     <table>
       <tr>
@@ -189,28 +189,31 @@
       // Atualiza as listas de personagens imediatamente
       updateCharacterLists();
 
-      // Calcula o tempo até a próxima atualização
+      // Aguarda até a próxima hora para verificar novamente
       var currentTime = new Date();
       var minutesUntilNextHour = 60 - currentTime.getMinutes();
-
-      var countdownElement = document.getElementById("countdown");
-      countdownElement.textContent = minutesUntilNextHour + " Minutes";
-
-      // Aguarda até a próxima hora para verificar novamente
       var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Próxima hora = minutos restantes até a próxima hora * 60 segundos * 1000 milissegundos
+      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
     }
 
     // Inicia o processo de verificação e atualização do banner
-    var currentTime = new Date();
-    var minutesUntilNextHour = 60 - currentTime.getMinutes();
-    var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-    setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Inicia após o tempo restante até a próxima hora
-
-    // Formata o tempo como "00" para exibição
-    function formatTime(time) {
-      return time < 10 ? "0" + time : time;
+    function initializeBanner() {
+      var currentTime = new Date();
+      var minutesUntilNextHour = 60 - currentTime.getMinutes();
+      var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
+      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour);
     }
+
+    // Inicia o banner somente quando passar 1 hora em relação ao horário GMT de 00:00
+    function startBannerAfterOneHour() {
+      var currentTime = new Date();
+      var minutesPastHour = currentTime.getMinutes();
+      var millisecondsUntilNextHour = (60 - minutesPastHour) * 60 * 1000;
+      setTimeout(initializeBanner, millisecondsUntilNextHour);
+    }
+
+    // Inicia o banner
+    startBannerAfterOneHour();
   </script>
 </body>
 </html>
