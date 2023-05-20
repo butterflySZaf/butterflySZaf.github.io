@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flappy Bird</title>
+    <style>
+        #game {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            border: 1px solid black;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #bird {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            border-radius: 50%;
+        }
+
+        .pipe {
+            position: absolute;
+            width: 80px;
+            height: 300px;
+            background-color: green;
+        }
+
+        #pipe_upper {
+            top: 0;
+        }
+
+        #pipe_lower {
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="bird"></div>
+        <div class="pipe" id="pipe_upper"></div>
+        <div class="pipe" id="pipe_lower"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var bird = document.getElementById("bird");
+            var pipeUpper = document.getElementById("pipe_upper");
+            var pipeLower = document.getElementById("pipe_lower");
+            var game = document.getElementById("game");
+            var score = 0;
+            var gameSpeed = 2;
+            var gravity = 1;
+            var birdPosition = 50;
+            var pipePosition = 400;
+
+            function updateScore() {
+                document.getElementById("score").innerHTML = "Score: " + score;
+            }
+
+            function gameLoop() {
+                birdPosition += gravity;
+                bird.style.top = birdPosition + "px";
+
+                pipePosition -= gameSpeed;
+                pipeUpper.style.left = pipePosition + "px";
+                pipeLower.style.left = pipePosition + "px";
+
+                if (pipePosition <= -80) {
+                    pipePosition = 400;
+                    score++;
+                    updateScore();
+                }
+
+                if (birdPosition > 450) {
+                    gameOver();
+                }
+
+                if (collisionDetection()) {
+                    gameOver();
+                }
+
+                requestAnimationFrame(gameLoop);
+            }
+
+            function collisionDetection() {
+                var birdRect = bird.getBoundingClientRect();
+                var pipeUpperRect = pipeUpper.getBoundingClientRect();
+                var pipeLowerRect = pipeLower.getBoundingClientRect();
+
+                return (
+                    birdRect.left < pipeUpperRect.right &&
+                    birdRect.right > pipeUpperRect.left &&
+                    birdRect.top < pipeUpperRect.bottom &&
+                    birdRect.bottom > pipeLowerRect.top
+                );
+            }
+
+            function gameOver() {
+                alert("Game Over! Your score is: " + score);
+                score = 0;
+                birdPosition = 50;
+                pipePosition = 400;
+                updateScore();
+            }
+
+            game.addEventListener("click", function() {
+                birdPosition -= 50;
+            });
+
+            gameLoop();
+        });
+    </script>
+</body>
+</html>
