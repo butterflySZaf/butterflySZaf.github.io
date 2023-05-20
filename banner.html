@@ -193,26 +193,18 @@
       var currentTime = new Date();
       var minutesUntilNextHour = 60 - currentTime.getMinutes();
       var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
+      setTimeout(updateCharacterLists, millisecondsUntilNextHour); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
     }
 
-    // Inicia o processo de verificação e atualização do banner
-    function initializeBanner() {
+    // Inicia o processo de verificação e atualização do banner após 1 hora
+    function startBannerAfterOneHour() {
       var currentTime = new Date();
       var minutesUntilNextHour = 60 - currentTime.getMinutes();
       var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour);
+      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Inicia a verificação e atualização após 1 hora
     }
 
-    // Inicia o banner somente quando passar 1 hora em relação ao horário GMT de 00:00
-    function startBannerAfterOneHour() {
-      var currentTime = new Date();
-      var minutesPastHour = currentTime.getMinutes();
-      var millisecondsUntilNextHour = (60 - minutesPastHour) * 60 * 1000;
-      setTimeout(initializeBanner, millisecondsUntilNextHour);
-    }
-
-    // Inicia o banner
+    // Inicia o processo de verificação e atualização do banner
     startBannerAfterOneHour();
   </script>
 </body>
