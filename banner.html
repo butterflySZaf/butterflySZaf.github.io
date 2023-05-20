@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Anime Dungeons - Banner 24H</title>
+  <title>Anime Dungeons | Banner</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
@@ -79,9 +79,9 @@
 </head>
 <body>
   <div style="background-color: #222222;">
-    <h1>Anime Dungeons - Banner 24H</h1>
+    <h1>Anime Dungeons</h1>
 
-    <p>Official game banner with 100% of precision. Updates every 1 hour.</p>
+    <p>Updated web-banner from Roblox game "Anime Dungeons"! Updates in: <span id="countdown"></span></p>
 
     <table>
       <tr>
@@ -192,12 +192,21 @@
       // Aguarda até a próxima hora para verificar novamente
       var currentTime = new Date();
       var minutesUntilNextHour = 60 - currentTime.getMinutes();
-      var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
+      var secondsUntilNextHour = minutesUntilNextHour * 60;
+      var countdownElement = document.getElementById("countdown");
+
+      countdownElement.textContent = formatTime(minutesUntilNextHour) + ":" + formatTime(secondsUntilNextHour);
+
+      setTimeout(checkAndUpdateBanner, secondsUntilNextHour * 1000); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
     }
 
     // Inicia o processo de verificação e atualização do banner
     checkAndUpdateBanner();
+
+    // Formata o tempo como "00" para exibição
+    function formatTime(time) {
+      return time < 10 ? "0" + time : time;
+    }
   </script>
 </body>
 </html>
