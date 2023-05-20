@@ -37,7 +37,8 @@
     ul {
       list-style-type: none;
       padding-left: 0;
-      margin-top: 10px;
+      margin-top: 0;
+      margin-bottom: 10px;
     }
 
     li {
@@ -68,25 +69,25 @@
 
     <table>
       <tr>
-        <td>
+        <td valign="top">
           <h2>Legendary</h2>
           <ul id="legendary-character-list">
             <!-- Personagem lendário será adicionado aqui via JavaScript -->
           </ul>
         </td>
-        <td>
+        <td valign="top">
           <h2>Rare</h2>
           <ul id="rare-character-list">
             <!-- Personagem raro será adicionado aqui via JavaScript -->
           </ul>
         </td>
-        <td>
+        <td valign="top">
           <h2>Uncommon</h2>
           <ul id="uncommon-character-list">
             <!-- Personagem incomum será adicionado aqui via JavaScript -->
           </ul>
         </td>
-        <td>
+        <td valign="top">
           <h2>Common</h2>
           <ul id="common-character-list">
             <!-- Personagens comuns serão adicionados aqui via JavaScript -->
@@ -127,14 +128,14 @@
 
     // Função para atualizar as listas de personagens
     function updateCharacterLists() {
-      updateCharacterList(legendaryCharacterTable, "legendary-character-list", "Legendary", 1);
-      updateCharacterList(rareCharacterTable, "rare-character-list", "Rare", 1);
-      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", "Uncommon", 1);
-      updateCharacterList(commonCharacterTable, "common-character-list", "Common", 3);
+      updateCharacterList(legendaryCharacterTable, "legendary-character-list", 1);
+      updateCharacterList(rareCharacterTable, "rare-character-list", 1);
+      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", 1);
+      updateCharacterList(commonCharacterTable, "common-character-list", 3);
     }
 
     // Função para atualizar uma lista de personagens
-    function updateCharacterList(characterTable, listId, rarity, count) {
+    function updateCharacterList(characterTable, listId, count) {
       var ul = document.getElementById(listId);
       ul.innerHTML = ""; // Limpa a lista antes de adicionar os novos personagens
 
