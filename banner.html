@@ -59,6 +59,22 @@
     .corner-text:hover {
       text-decoration: underline;
     }
+
+    .legendary {
+      color: orange;
+    }
+
+    .rare {
+      color: blue;
+    }
+
+    .uncommon {
+      color: lightgreen;
+    }
+
+    .common {
+      color: lightgray;
+    }
   </style>
 </head>
 <body>
@@ -128,14 +144,14 @@
 
     // Função para atualizar as listas de personagens
     function updateCharacterLists() {
-      updateCharacterList(legendaryCharacterTable, "legendary-character-list", 1);
-      updateCharacterList(rareCharacterTable, "rare-character-list", 1);
-      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", 1);
-      updateCharacterList(commonCharacterTable, "common-character-list", 3);
+      updateCharacterList(legendaryCharacterTable, "legendary-character-list", 1, "legendary");
+      updateCharacterList(rareCharacterTable, "rare-character-list", 1, "rare");
+      updateCharacterList(uncommonCharacterTable, "uncommon-character-list", 1, "uncommon");
+      updateCharacterList(commonCharacterTable, "common-character-list", 3, "common");
     }
 
     // Função para atualizar uma lista de personagens
-    function updateCharacterList(characterTable, listId, count) {
+    function updateCharacterList(characterTable, listId, count, rarityClass) {
       var ul = document.getElementById(listId);
       ul.innerHTML = ""; // Limpa a lista antes de adicionar os novos personagens
 
@@ -146,6 +162,7 @@
       for (var i = 0; i < randomCharacters.length; i++) {
         var li = document.createElement("li");
         li.innerText = randomCharacters[i];
+        li.classList.add(rarityClass);
         ul.appendChild(li);
       }
     }
