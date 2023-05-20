@@ -8,9 +8,28 @@
 </head>
 <body>
   <div>
-    <!-- Conteúdo do banner -->
     <h1>Anime Dungeons - Banner 24H</h1>
-    <!-- Resto do conteúdo do banner -->
+
+    <table>
+      <tr>
+        <td valign="top">
+          <h2>Legendary</h2>
+          <ul id="legendary-character-list"></ul>
+        </td>
+        <td valign="top">
+          <h2>Rare</h2>
+          <ul id="rare-character-list"></ul>
+        </td>
+        <td valign="top">
+          <h2>Uncommon</h2>
+          <ul id="uncommon-character-list"></ul>
+        </td>
+        <td valign="top">
+          <h2>Common</h2>
+          <ul id="common-character-list"></ul>
+        </td>
+      </tr>
+    </table>
   </div>
 
   <script>
@@ -67,48 +86,44 @@
       // Atualizar o conteúdo do banner com os personagens selecionados
 
       // Personagens lendários
-      var legendaryList = document.createElement("ul");
+      var legendaryList = document.getElementById("legendary-character-list");
+      legendaryList.innerHTML = "";
       legendaryCharacters.forEach(function (character) {
         var li = document.createElement("li");
         li.textContent = character;
         li.classList.add("legendary");
         legendaryList.appendChild(li);
       });
-      document.getElementById("legendary-character-list").innerHTML = "";
-      document.getElementById("legendary-character-list").appendChild(legendaryList);
 
       // Personagens raros
-      var rareList = document.createElement("ul");
+      var rareList = document.getElementById("rare-character-list");
+      rareList.innerHTML = "";
       rareCharacters.forEach(function (character) {
         var li = document.createElement("li");
         li.textContent = character;
         li.classList.add("rare");
         rareList.appendChild(li);
       });
-      document.getElementById("rare-character-list").innerHTML = "";
-      document.getElementById("rare-character-list").appendChild(rareList);
 
       // Personagens incomuns
-      var uncommonList = document.createElement("ul");
+      var uncommonList = document.getElementById("uncommon-character-list");
+      uncommonList.innerHTML = "";
       uncommonCharacters.forEach(function (character) {
         var li = document.createElement("li");
         li.textContent = character;
         li.classList.add("uncommon");
         uncommonList.appendChild(li);
       });
-      document.getElementById("uncommon-character-list").innerHTML = "";
-      document.getElementById("uncommon-character-list").appendChild(uncommonList);
 
       // Personagens comuns
-      var commonList = document.createElement("ul");
+      var commonList = document.getElementById("common-character-list");
+      commonList.innerHTML = "";
       commonCharacters.forEach(function (character) {
         var li = document.createElement("li");
         li.textContent = character;
         li.classList.add("common");
         commonList.appendChild(li);
       });
-      document.getElementById("common-character-list").innerHTML = "";
-      document.getElementById("common-character-list").appendChild(commonList);
     }
 
     // Atualizar o banner inicialmente
