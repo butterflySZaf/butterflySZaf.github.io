@@ -81,32 +81,32 @@
   <div style="background-color: #222222;">
     <h1>Anime Dungeons - Banner 24H</h1>
 
-    <p>Official game banner with 100% of precision. Updates every 1 hour.</p>
+    <p>Official game banner with 100% precision. Updates every 1 hour.</p>
 
     <table>
       <tr>
         <td valign="top">
           <h2>Legendary</h2>
           <ul id="legendary-character-list">
-            <!-- Personagem lendário será adicionado aqui via JavaScript -->
+            <!-- Legendary characters will be added here via JavaScript -->
           </ul>
         </td>
         <td valign="top">
           <h2>Rare</h2>
           <ul id="rare-character-list">
-            <!-- Personagem raro será adicionado aqui via JavaScript -->
+            <!-- Rare characters will be added here via JavaScript -->
           </ul>
         </td>
         <td valign="top">
           <h2>Uncommon</h2>
           <ul id="uncommon-character-list">
-            <!-- Personagem incomum será adicionado aqui via JavaScript -->
+            <!-- Uncommon characters will be added here via JavaScript -->
           </ul>
         </td>
         <td valign="top">
           <h2>Common</h2>
           <ul id="common-character-list">
-            <!-- Personagens comuns serão adicionados aqui via JavaScript -->
+            <!-- Common characters will be added here via JavaScript -->
           </ul>
         </td>
       </tr>
@@ -116,7 +116,7 @@
   </div>
 
   <script>
-    // Tabelas de personagens
+    // Character tables
     var legendaryCharacterTable = [
       "Ace",
       "Goku",
@@ -142,7 +142,7 @@
       "Tanjiro"
     ];
 
-    // Função para atualizar as listas de personagens
+    // Function to update the character lists
     function updateCharacterLists() {
       updateCharacterList(legendaryCharacterTable, "legendary-character-list", 1, "legendary");
       updateCharacterList(rareCharacterTable, "rare-character-list", 1, "rare");
@@ -150,15 +150,15 @@
       updateCharacterList(commonCharacterTable, "common-character-list", 3, "common");
     }
 
-    // Função para atualizar uma lista de personagens
+    // Function to update a character list
     function updateCharacterList(characterTable, listId, count, rarityClass) {
       var ul = document.getElementById(listId);
-      ul.innerHTML = ""; // Limpa a lista antes de adicionar os novos personagens
+      ul.innerHTML = ""; // Clear the list before adding new characters
 
-      // Seleciona aleatoriamente os personagens da tabela
+      // Randomly select characters from the table
       var randomCharacters = getRandomCharacters(characterTable, count);
 
-      // Adiciona os personagens à lista
+      // Add the characters to the list
       for (var i = 0; i < randomCharacters.length; i++) {
         var li = document.createElement("li");
         li.innerText = randomCharacters[i];
@@ -167,9 +167,9 @@
       }
     }
 
-    // Função para selecionar aleatoriamente 'count' elementos de um array
+    // Function to randomly select 'count' elements from an array
     function getRandomCharacters(array, count) {
-      var shuffledArray = array.slice(); // Copia o array original
+      var shuffledArray = array.slice(); // Copy the original array
       var randomCharacters = [];
 
       while (randomCharacters.length < count && shuffledArray.length > 0) {
@@ -181,31 +181,20 @@
       return randomCharacters;
     }
 
-    // Atualiza as listas de personagens inicialmente
+    // Update the character lists initially
     updateCharacterLists();
 
-    // Função para verificar e atualizar o banner (listas de personagens)
-    function checkAndUpdateBanner() {
-      // Atualiza as listas de personagens imediatamente
+    // Function to update the banner (character lists)
+    function updateBanner() {
+      // Update the character lists immediately
       updateCharacterLists();
 
-      // Aguarda até a próxima hora para verificar novamente
-      var currentTime = new Date();
-      var minutesUntilNextHour = 60 - currentTime.getMinutes();
-      var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-      setTimeout(updateCharacterLists, millisecondsUntilNextHour); // Próxima hora = minutos restantes até o próximo hora * 60 segundos * 1000 milissegundos
+      // Wait for 1 hour to update again
+      setTimeout(updateBanner, 60 * 60 * 1000); // 1 hour = 60 minutes * 60 seconds * 1000 milliseconds
     }
 
-    // Inicia o processo de verificação e atualização do banner após 1 hora
-    function startBannerAfterOneHour() {
-      var currentTime = new Date();
-      var minutesUntilNextHour = 60 - currentTime.getMinutes();
-      var millisecondsUntilNextHour = minutesUntilNextHour * 60 * 1000;
-      setTimeout(checkAndUpdateBanner, millisecondsUntilNextHour); // Inicia a verificação e atualização após 1 hora
-    }
-
-    // Inicia o processo de verificação e atualização do banner
-    startBannerAfterOneHour();
+    // Start the banner update process
+    updateBanner();
   </script>
 </body>
 </html>
