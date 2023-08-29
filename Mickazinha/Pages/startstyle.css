@@ -6,6 +6,7 @@ body {
     min-height: 100vh;
     background-color: rgb(30, 30, 30);
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 
 .center-content {
@@ -16,7 +17,10 @@ body {
 .greeting {
     font-size: 28px;
     color: rgb(225, 225, 225);
-    margin-bottom: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .image-container {
@@ -33,8 +37,8 @@ body {
     pointer-events: none;
 }
 
-.image1 { top: 20px; left: 20px; }
-.image2 { top: 20px; right: 20px; }
-.image3 { bottom: 20px; left: 20px; }
-.image4 { bottom: 20px; right: 20px; }
-.image5 { top: calc(50% - 75px); left: calc(50% - 75px); }
+.image1 { top: 20px; left: 20px; transform: rotate(-30deg); }
+.image2 { top: 20px; right: 20px; transform: rotate(15deg); }
+.image3 { bottom: 20px; left: 20px; transform: rotate(45deg); }
+.image4 { bottom: 20px; right: 20px; transform: rotate(-60deg); }
+.image5 { top: calc(50% - 75px); left: calc(50% - 75px); transform: rotate(10deg); }
