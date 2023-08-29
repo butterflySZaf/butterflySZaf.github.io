@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: rgb(30, 30, 30);
+    font-family: 'Roboto', sans-serif;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh; /* Adjust this value for vertical positioning */
+}
+
+.greeting {
+    font-size: 24px;
+    text-align: center;
+    color: rgb(225,225,225)
+}
+
+.start-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
