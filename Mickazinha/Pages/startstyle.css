@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(30, 30, 30);
+    font-family: 'Roboto', sans-serif;
+}
+
+.center-content {
+    text-align: center;
+    position: relative;
+}
+
+.greeting {
+    font-size: 28px;
+    color: rgb(225, 225, 225);
+    margin-bottom: 30px;
+}
+
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.image {
+    position: absolute;
+    max-width: 150px;
+    pointer-events: none;
+}
+
+.image1 { top: 20px; left: 20px; }
+.image2 { top: 20px; right: 20px; }
+.image3 { bottom: 20px; left: 20px; }
+.image4 { bottom: 20px; right: 20px; }
+.image5 { top: calc(50% - 75px); left: calc(50% - 75px); }
