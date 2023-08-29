@@ -40,5 +40,3 @@ body {
 .image1 { top: 20px; left: 20px; transform: rotate(-30deg); }
 .image2 { top: 20px; right: 20px; transform: rotate(15deg); }
 .image3 { bottom: 20px; left: 20px; transform: rotate(45deg); }
-.image4 { bottom: 20px; right: 20px; transform: rotate(-60deg); }
-.image5 { top: calc(50% - 75px); left: calc(50% - 75px); transform: rotate(10deg); }
