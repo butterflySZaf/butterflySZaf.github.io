@@ -26,8 +26,12 @@ body {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #00bcd4; /* Cor ciano estilosa */
+    background-color: #00bcd4; /* Cor ciano azul bebê padrão */
     color: white; /* Cor do texto do botão */
     border: none; /* Remova a borda */
     cursor: pointer; /* Mude o cursor ao passar por cima */
+}
+
+.start-button:hover {
+    background-color: #1fa6b2; /* Cor ciano quando o ponteiro está em cima */
 }
